@@ -1,5 +1,8 @@
 const express = require("express");
+
 const app = express();
+
+const userRouter = require("./routes/userRouter");
 
 const {
   getAllTours,
@@ -7,12 +10,16 @@ const {
   createTour,
   updateTour,
   deleteTour,
-} = require("./tourHandlers.js"); 
+} = require("./tourHandlers.js");
 
 // Middleware to parse JSON
 app.use(express.json());
 
-// ROUTES
+// USER ROUTES
+app.use("/users", userRouter);
+
+// TOUR ROUTES
+
 // GET /tours
 app.get("/tours", getAllTours);
 
@@ -29,6 +36,7 @@ app.put("/tours/:tourId", updateTour);
 app.delete("/tours/:tourId", deleteTour);
 
 const port = 4000;
+
 // Start the server
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
