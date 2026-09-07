@@ -10,6 +10,10 @@ const {
   deleteUser
 } = require("../controllers/userControllers");
 
+const auth = require("../middleware/auth");
+
+router.use(auth);
+
 router.get("/", getUsers);
 router.get("/:id", getUser);
 router.post("/", createUser);

@@ -8,7 +8,11 @@ const {
   deleteTour,
 } = require("../controllers/tourControllers.js");
 
+const auth = require("../middleware/auth");
+
 const router = express.Router();
+
+router.use(auth);
 
 router.get("/", getAllTours);
 router.post("/", createTour);
